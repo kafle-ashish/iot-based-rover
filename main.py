@@ -1,12 +1,12 @@
 from packages import get_control_data 
 import multiprocessing
+import gpio_control
 
-DATA = ''
-def checker():
+def checker(DATA):
     if DATA == "0000":
         print(DATA)
     elif DATA == "0001":
-        print(DATA)
+        gpio_control.forward()
     elif DATA == "0002":
         print(DATA)
     elif DATA == "0003":
@@ -28,4 +28,5 @@ def looper():
         #Insert a function to handle garbage DATA 
         checker()
 
-looper()
+#looper()
+checker("0001")

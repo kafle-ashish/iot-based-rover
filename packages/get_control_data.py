@@ -9,6 +9,7 @@ def get_data():
         data = requests.get("http://dweet.io/get/latest/dweet/for/dunebot").text
         data = json.loads(data)
         data = list(data["with"][0]["content"])[0] 
-        #print("Data is {}".format(DATA))
+        #print("Data is {}".format(data))
 
         return data
+
