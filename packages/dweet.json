@@ -1,7 +1,14 @@
-{"this":"succeeded",
-"by":"getting",
-"the":"dweets",
-"with":[{"thing":"dunebot",
-        "created":"2018-05-15T04:45:02.139Z",
-        "content":{"0004":""}}]
+{
+        "this": "succeeded", 
+        "by": "getting", 
+        "the": "dweets", 
+        "with": 
+        [
+                {"thing": "m2d2",
+                 "created": "2018-05-29T06:45:52.991Z", 
+                 "content": {
+                         "0000": ""
+                         }
+                }
+        ]
 }
