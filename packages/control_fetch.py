@@ -11,5 +11,4 @@ def get_data():
         print("Data is {}".format(data))
         return list(data['with'][0]['content'].keys())
 
-        
 
