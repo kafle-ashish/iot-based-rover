@@ -1,7 +1,11 @@
 from packages import control_fetch 
 from packages import gpio_control
+from packages.mjpg_streamer import streamer
+import sensors
 
 def looper():
+
+    clock: int = 0
     while(True):
         #print("Getting data......")
         DATA = str(control_fetch.get_data())
@@ -23,6 +27,11 @@ def looper():
         
         else:
             gpio_control.wait()
+        
+        clock += 1
+        if clock == 60:
+            sensors.post()
+            clock = 0
     return
 
 if __name__ == "__main__":
