@@ -1,98 +1,124 @@
 import RPi.GPIO as gpio
 import time as t
 
-MOT_A_IN1 =17
-MOT_A_IN2 =22
-MOT_A_IN3 =23
-MOT_A_IN4 =24
+class GPIOControl():
 
-MOT_B_IN1 =26
-MOT_B_IN2 =19
-MOT_B_IN3 =13
-MOT_B_IN4 =27
+    MOT_A_IN1 =17
+    MOT_A_IN2 =22
+    MOT_A_IN3 =23
+    MOT_A_IN4 =24
 
-def init():
-    gpio.setmode(gpio.BCM)
-    gpio.setup(MOT_A_IN1, gpio.OUT)
-    gpio.setup(MOT_A_IN2, gpio.OUT)
-    gpio.setup(MOT_A_IN3, gpio.OUT)
-    gpio.setup(MOT_A_IN4, gpio.OUT)
+    MOT_B_IN1 =26
+    MOT_B_IN2 =19
+    MOT_B_IN3 =13
+    MOT_B_IN4 =27
 
-    gpio.setup(MOT_B_IN1, gpio.OUT)
-    gpio.setup(MOT_B_IN2, gpio.OUT)
-    gpio.setup(MOT_B_IN3, gpio.OUT)
-    gpio.setup(MOT_B_IN4, gpio.OUT)
+    def __init__(self):    
+        gpio.setmode(gpio.BCM)
+        #MOTORDRIVER A
+        gpio.setup(self.MOT_A_IN1, gpio.OUT)
+        self.MOT_A_IN1_PWM = gpio.PWM(self.MOT_A_IN1, 50)
+        self.MOT_A_IN1_PWM.start(0)
 
-def wait():
-    init()
-    gpio.output(MOT_A_IN1, False)
-    gpio.output(MOT_A_IN2, False)
-    gpio.output(MOT_A_IN3, False)
-    gpio.output(MOT_A_IN4, False)
+        gpio.setup(self.MOT_A_IN2, gpio.OUT)
+        self.MOT_A_IN2_PWM = gpio.PWM(self.MOT_A_IN2, 50)
+        self.MOT_A_IN2_PWM.start(0)
+        
+        gpio.setup(self.MOT_A_IN3, gpio.OUT)
+        self.MOT_A_IN3_PWM = gpio.PWM(self.MOT_A_IN3, 50)
+        self.MOT_A_IN3_PWM.start(0)
+        
+        gpio.setup(self.MOT_A_IN4, gpio.OUT)
+        self.MOT_A_IN4_PWM = gpio.PWM(self.MOT_A_IN4, 50)
+        self.MOT_A_IN4_PWM.start(0)
+        
+        #MOTORDRIVER B
+        gpio.setup(self.MOT_B_IN1, gpio.OUT)
+        self.MOT_B_IN1_PWM = gpio.PWM(self.MOT_B_IN1, 50)
+        self.MOT_B_IN1_PWM.start(0)
 
-    gpio.output(MOT_B_IN1, False)
-    gpio.output(MOT_B_IN2, False)
-    gpio.output(MOT_B_IN3, False)
-    gpio.output(MOT_B_IN4, False)
-    t.sleep(4)
-    gpio.cleanup()
+        gpio.setup(self.MOT_B_IN2, gpio.OUT)
+        self.MOT_B_IN2_PWM = gpio.PWM(self.MOT_B_IN2, 50)
+        self.MOT_B_IN2_PWM.start(0)
+        
+        gpio.setup(self.MOT_B_IN3, gpio.OUT)
+        self.MOT_B_IN3_PWM = gpio.PWM(self.MOT_B_IN3, 50)
+        self.MOT_B_IN3_PWM.start(0)
+        
+        gpio.setup(self.MOT_B_IN4, gpio.OUT)
+        self.MOT_B_IN4_PWM = gpio.PWM(self.MOT_B_IN4, 50)
+        self.MOT_B_IN4_PWM.start(0)
+        
+    def wait(self):
+        #self.init()
+        self.MOT_A_IN1_PWM.start(0)#gpio.output(self.MOT_A_IN1, False)
+        self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
+        self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
+        self.MOT_A_IN4_PWM.start(0)#gpio.output(self.MOT_A_IN4, False)
 
-def forward():
-    init()
-    gpio.output(MOT_A_IN1, True)
-    gpio.output(MOT_A_IN2, False)
-    gpio.output(MOT_A_IN3, False)
-    gpio.output(MOT_A_IN4, True)
+        self.MOT_B_IN1_PWM.start(0)#gpio.output(self.MOT_B_IN1, False)
+        self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
+        self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
+        self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
+        t.sleep(4)
+        gpio.cleanup()
 
-    gpio.output(MOT_B_IN1, True)
-    gpio.output(MOT_B_IN2, False)
-    gpio.output(MOT_B_IN3, False)
-    gpio.output(MOT_B_IN4, True)
+    def forward(self):
+        #self.init()
+        self.MOT_A_IN1_PWM.start(50)#gpio.output(self.MOT_A_IN1, True)
+        self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
+        self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
+        self.MOT_A_IN4_PWM.start(50)#gpio.output(self.MOT_A_IN4, True)
 
-    t.sleep(4)
-    gpio.cleanup()
+        self.MOT_B_IN1_PWM.start(50)#gpio.output(self.MOT_B_IN1, True)
+        self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
+        self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
+        self.MOT_B_IN4_PWM.start(50)#gpio.output(self.MOT_B_IN4, True)
 
-def left():
-    init()
-    gpio.output(MOT_A_IN1, False)
-    gpio.output(MOT_A_IN2, False)
-    gpio.output(MOT_A_IN3, False)
-    gpio.output(MOT_A_IN4, True)
+        t.sleep(4)
+        gpio.cleanup()
 
-    gpio.output(MOT_B_IN1, False)
-    gpio.output(MOT_B_IN2, False)
-    gpio.output(MOT_B_IN3, False)
-    gpio.output(MOT_B_IN4, True)
+    def left(self):
+        #self.init()
+        self.MOT_A_IN1_PWM.start(0)#gpio.output(self.MOT_A_IN1, False)
+        self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
+        self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
+        self.MOT_A_IN4_PWM.start(50)#gpio.output(self.MOT_A_IN4, True)
 
-    t.sleep(4)
-    gpio.cleanup()
+        self.MOT_B_IN1_PWM.start(0)#gpio.output(self.MOT_B_IN1, False)
+        self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
+        self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
+        self.MOT_B_IN4_PWM.start(50)#gpio.output(self.MOT_B_IN4, True)
 
-def right():
-    init()
-    gpio.output(MOT_A_IN1, True)
-    gpio.output(MOT_A_IN2, False)
-    gpio.output(MOT_A_IN3, False)
-    gpio.output(MOT_A_IN4, False)
+        t.sleep(4)
+        gpio.cleanup()
 
-    gpio.output(MOT_B_IN1, True)
-    gpio.output(MOT_B_IN2, False)
-    gpio.output(MOT_B_IN3, False)
-    gpio.output(MOT_B_IN4, False)
+    def right(self):
+        #self.init()
+        self.MOT_A_IN1_PWM.start(50)#gpio.output(self.MOT_A_IN1, True)
+        self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
+        self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
+        self.MOT_A_IN4_PWM.start(0)#gpio.output(self.MOT_A_IN4, False)
 
-    t.sleep(4)
-    gpio.cleanup()
+        self.MOT_B_IN1_PWM.start(50)#gpio.output(self.MOT_B_IN1, True)
+        self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
+        self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
+        self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
 
-def reverse():
-    init()
-    gpio.output(MOT_A_IN1, False)
-    gpio.output(MOT_A_IN2, True)
-    gpio.output(MOT_A_IN3, True)
-    gpio.output(MOT_A_IN4, False)
+        t.sleep(4)
+        gpio.cleanup()
 
-    gpio.output(MOT_B_IN1, False)
-    gpio.output(MOT_B_IN2, True)
-    gpio.output(MOT_B_IN3, True)
-    gpio.output(MOT_B_IN4, False)
+    def reverse(self):
+        #self.init()
+        self.MOT_A_IN1_PWM.start(0)#gpio.output(self.MOT_A_IN1, False)
+        self.MOT_A_IN2_PWM.start(50)#gpio.output(self.MOT_A_IN2, True)
+        self.MOT_A_IN3_PWM.start(50)#gpio.output(self.MOT_A_IN3, True)
+        self.MOT_A_IN4_PWM.start(0)#gpio.output(self.MOT_A_IN4, False)
 
-    t.sleep(4)
-    gpio.cleanup()
+        self.MOT_B_IN1_PWM.start(0)#gpio.output(self.MOT_B_IN1, False)
+        self.MOT_B_IN2_PWM.start(50)#gpio.output(self.MOT_B_IN2, True)
+        self.MOT_B_IN3_PWM.start(50)#gpio.output(self.MOT_B_IN3, True)
+        self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
+
+        t.sleep(4)
+        gpio.cleanup()

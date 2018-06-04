@@ -1,7 +1,13 @@
 from packages import control_fetch 
-from packages import gpio_control
+from packages.gpio_control import GPIOControl 
 from packages.mjpg_streamer import streamer
 import sensors
+import os
+
+def onStartUP():
+    os.system("sudo modprobe bcm2835-v4l2")
+    streamer.stream()
+    #pass
 
 def looper():
 
@@ -29,10 +35,12 @@ def looper():
             gpio_control.wait()
         
         clock += 1
-        if clock == 60:
+        if clock == 100:
             sensors.post()
             clock = 0
     return
 
 if __name__ == "__main__":
+    onStartUP()
+    gpio_control = GPIOControl()
     looper()
