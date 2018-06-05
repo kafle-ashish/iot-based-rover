@@ -10,12 +10,12 @@ def onStartUP():
     #pass
 
 def looper():
-
+    gpio_control = GPIOControl()
     clock = 0
     while(True):
         #print("Getting data......")
         DATA = str(control_fetch.get_data())
-        #print(DATA)
+        print(DATA)
         if DATA == "['0000']":
             gpio_control.wait()
 
@@ -34,13 +34,12 @@ def looper():
         else:
             gpio_control.wait()
 
-        #clock += 1
-        #if clock == 100:
-            #sensors.post()
-            #clock = 0
+        clock += 1
+        if clock == 100:
+            sensors.post()
+            clock = 0
     return
 
 if __name__ == "__main__":
    # onStartUP()
-    gpio_control = GPIOControl()
     looper()

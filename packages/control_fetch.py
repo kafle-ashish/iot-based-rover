@@ -12,6 +12,6 @@ def get_data():
                 #print("Data is {}".format(data))
                 return list(data['with'][0]['content'].keys())
         except Exception as e:
-                print(str(e))
+                print("Control Fetch Error: ",str(e))
                 return("['0000']")
 

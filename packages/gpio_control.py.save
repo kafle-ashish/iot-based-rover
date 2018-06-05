@@ -79,27 +79,27 @@ class GPIOControl():
         t.sleep(4)
         #gpio.cleanup()
 
-    def right(self):
+    def left(self):
         #self.init()
         self.MOT_A_IN1_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN1, False)
         self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
-        self.MOT_A_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN3, False)
-        self.MOT_A_IN4_PWM.start(0)#gpio.output(self.MOT_A_IN4, True)
+        self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
+        self.MOT_A_IN4_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN4, True)
 
-        self.MOT_B_IN1_PWM.start(0)#gpio.output(self.MOT_B_IN1, False)
-        self.MOT_B_IN2_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN2, False)
+        self.MOT_B_IN1_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN1, False)
+        self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN4, True)
 
         t.sleep(4)
         #gpio.cleanup()
 
-    def left(self):
+    def right(self):
         #self.init()
-        self.MOT_A_IN1_PWM.start(0)#gpio.output(self.MOT_A_IN1, True)
-        self.MOT_A_IN2_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN2, False)
-        self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
-        self.MOT_A_IN4_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN4, False)
+        self.MOT_A_IN1_PWM.start(self.PW)#gpio.output(self.MOT_A_IN1, True)
+        self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
+        self.MOT_A_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN3, False)
+        self.MOT_A_IN4_PWM.start(0)#gpio.output(self.MOT_A_IN4, False)
 
         self.MOT_B_IN1_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN1, True)
         self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
@@ -124,14 +124,14 @@ class GPIOControl():
         t.sleep(4)
         #gpio.cleanup()
 
-#if __name__ == "__main__":
-#	obj = GPIOControl()
-#	print("Forward")
-#	obj.forward()
-#	print("Left")
-#	obj.left()
-#	print("Reverse")
-#	obj.reverse()
-#	print("Right")
-#	obj.right()
-#	gpio.cleanup()
+if __name__ == "__main__":
+	obj = GPIOControl()
+	print("Forward")
+	obj.forward()
+	print("Left")
+	obj.left()
+	print("Right")
+	obj.right()
+	print("Reverse")
+	obj.reverse()
+	gpio.cleanup()
