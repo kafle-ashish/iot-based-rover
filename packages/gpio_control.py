@@ -13,8 +13,10 @@ class GPIOControl():
     MOT_B_IN3 =13
     MOT_B_IN4 =27
 
-    PWM_VALUE = 25
-    def __init__(self):    
+    PWM_VALUE =25
+    PWM_VALUE_CORR =23
+    SLEEP_TIME = 2
+    def __init__(self):
         gpio.setmode(gpio.BCM)
         #MOTORDRIVER A
         gpio.setup(self.MOT_A_IN1, gpio.OUT)
@@ -24,15 +26,15 @@ class GPIOControl():
         gpio.setup(self.MOT_A_IN2, gpio.OUT)
         self.MOT_A_IN2_PWM = gpio.PWM(self.MOT_A_IN2, self.PWM_VALUE)
         self.MOT_A_IN2_PWM.start(0)
-        
+
         gpio.setup(self.MOT_A_IN3, gpio.OUT)
         self.MOT_A_IN3_PWM = gpio.PWM(self.MOT_A_IN3, self.PWM_VALUE)
         self.MOT_A_IN3_PWM.start(0)
-        
+
         gpio.setup(self.MOT_A_IN4, gpio.OUT)
         self.MOT_A_IN4_PWM = gpio.PWM(self.MOT_A_IN4, self.PWM_VALUE)
         self.MOT_A_IN4_PWM.start(0)
-        
+
         #MOTORDRIVER B
         gpio.setup(self.MOT_B_IN1, gpio.OUT)
         self.MOT_B_IN1_PWM = gpio.PWM(self.MOT_B_IN1, self.PWM_VALUE)
@@ -41,15 +43,15 @@ class GPIOControl():
         gpio.setup(self.MOT_B_IN2, gpio.OUT)
         self.MOT_B_IN2_PWM = gpio.PWM(self.MOT_B_IN2, self.PWM_VALUE)
         self.MOT_B_IN2_PWM.start(0)
-        
+
         gpio.setup(self.MOT_B_IN3, gpio.OUT)
         self.MOT_B_IN3_PWM = gpio.PWM(self.MOT_B_IN3, self.PWM_VALUE)
         self.MOT_B_IN3_PWM.start(0)
-        
+
         gpio.setup(self.MOT_B_IN4, gpio.OUT)
         self.MOT_B_IN4_PWM = gpio.PWM(self.MOT_B_IN4, self.PWM_VALUE)
         self.MOT_B_IN4_PWM.start(0)
-        
+
     def wait(self):
         #self.init()
         self.MOT_A_IN1_PWM.start(0)#gpio.output(self.MOT_A_IN1, False)
@@ -61,12 +63,12 @@ class GPIOControl():
         self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
-        t.sleep(4)
+        t.sleep(SLEEP_TIME)
         #gpio.cleanup()
 
     def forward(self):
         #self.init()
-        self.MOT_A_IN1_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN1, True)
+        self.MOT_A_IN1_PWM.start(self.PWM_VALUE_CORR)#gpio.output(self.MOT_A_IN1, True)
         self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
         self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
         self.MOT_A_IN4_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN4, True)
@@ -74,9 +76,9 @@ class GPIOControl():
         self.MOT_B_IN1_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN1, True)
         self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
-        self.MOT_B_IN4_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN4, True)
+        self.MOT_B_IN4_PWM.start(self.PWM_VALUE_CORR)#gpio.output(self.MOT_B_IN4, True)
 
-        t.sleep(4)
+        t.sleep(SLEEP_TIME)
         #gpio.cleanup()
 
     def right(self):
@@ -91,7 +93,7 @@ class GPIOControl():
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN4, True)
 
-        t.sleep(4)
+        t.sleep(SLEEP_TIME)
         #gpio.cleanup()
 
     def left(self):
@@ -106,7 +108,7 @@ class GPIOControl():
         self.MOT_B_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
 
-        t.sleep(4)
+        t.sleep(SLEEP_TIME)
         #gpio.cleanup()
 
     def reverse(self):
@@ -121,17 +123,31 @@ class GPIOControl():
         self.MOT_B_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN3, True)
         self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
 
-        t.sleep(4)
+        t.sleep(SLEEP_TIME)
         #gpio.cleanup()
 
 #if __name__ == "__main__":
-#	obj = GPIOControl()
-#	print("Forward")
-#	obj.forward()
-#	print("Left")
-#	obj.left()
-#	print("Reverse")
-#	obj.reverse()
-#	print("Right")
-#	obj.right()
-#	gpio.cleanup()
+#        #obj = GPIOControl()
+#        while True:
+#            prompt = input()
+#            if prompt == "w":
+#                obj = GPIOControl()
+#                print("Forward")
+#                obj.forward()
+#            elif prompt == "a":
+#                obj = GPIOControl()
+#                print("Left")
+#                obj.left()
+#            elif prompt == "s":
+#                obj = GPIOControl()
+#                print("Reverse")
+#                obj.reverse()
+#            elif prompt == "d":
+#                obj = GPIOControl()
+#                print("Right")
+#                obj.right()
+#            else:
+#                obj = GPIOControl()
+#                print("Wait")
+#                obj.wait()
+#            gpio.cleanup()
