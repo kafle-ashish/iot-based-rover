@@ -13,9 +13,9 @@ class GPIOControl():
     MOT_B_IN3 =13
     MOT_B_IN4 =27
 
-    PWM_VALUE =25
-    PWM_VALUE_CORR =23
-    SLEEP_TIME = 2
+    PWM_VALUE =20  #25
+    PWM_VALUE_CORR =18  #23
+    SLEEP_TIME = 1
     def __init__(self):
         gpio.setmode(gpio.BCM)
         #MOTORDRIVER A
@@ -62,6 +62,7 @@ class GPIOControl():
         self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
+        #print("Wait thread going to sleep for {} seconds :)".format(self.SLEEP_TIME))
         t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
@@ -70,12 +71,11 @@ class GPIOControl():
         self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
         self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
         self.MOT_A_IN4_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN4, True)
-
         self.MOT_B_IN1_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN1, True)
         self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(self.PWM_VALUE_CORR)#gpio.output(self.MOT_B_IN4, True)
-
+        #print("Forward thread going to sleep for {} seconds :)".format(self.SLEEP_TIME))
         t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
@@ -89,7 +89,7 @@ class GPIOControl():
         self.MOT_B_IN2_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN2, False)
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN4, True)
-
+        #print("Right thread going to sleep for {} seconds :)".format(self.SLEEP_TIME))
         t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
@@ -103,7 +103,7 @@ class GPIOControl():
         self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
         self.MOT_B_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
-
+        #print("Left thread going to sleep for {} seconds :)".format(self.SLEEP_TIME))
         t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
@@ -117,7 +117,7 @@ class GPIOControl():
         self.MOT_B_IN2_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN2, True)
         self.MOT_B_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN3, True)
         self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
-
+        #print("Reverse thread going to sleep for {} seconds :)".format(self.SLEEP_TIME))
         t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
