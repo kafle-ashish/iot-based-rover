@@ -1,14 +1,14 @@
 from packages import control_fetch 
-from packages.gpio_control import GPIOControl 
-#from packages.mjpg_streamer import streamer
+from packages.gpio_control import GPIOControl
+from packages.mjpg_streamer import streamer 
 #import sensors
 import threading
 import os
 
 def onStartUP():
     os.system("sudo modprobe bcm2835-v4l2")
-    #streamer.stream()
-    #pass
+    live_feed = threading.Thread(streamer.stream(), daemon=True)
+    return
 
 def looper():
 
@@ -42,15 +42,13 @@ def looper():
             break
         else:
             pass
-            #gpio_control.wait()
 
         #clock += 1
-        #if clock == 100:
-            #sensors.post()
+        #if clock == 10:
+            #th = threading.Thread(sensors.post(), daemon=True)
             #clock = 0
-    #return
 
 if __name__ == "__main__":
-   # onStartUP()
+    onStartUP()
     gpio_control = GPIOControl()
     looper()

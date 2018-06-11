@@ -53,7 +53,6 @@ class GPIOControl():
         self.MOT_B_IN4_PWM.start(0)
 
     def wait(self):
-        #self.init()
         self.MOT_A_IN1_PWM.start(0)#gpio.output(self.MOT_A_IN1, False)
         self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
         self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
@@ -67,7 +66,6 @@ class GPIOControl():
         #gpio.cleanup()
 
     def forward(self):
-        #self.init()
         self.MOT_A_IN1_PWM.start(self.PWM_VALUE_CORR)#gpio.output(self.MOT_A_IN1, True)
         self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
         self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
@@ -82,7 +80,6 @@ class GPIOControl():
         #gpio.cleanup()
 
     def right(self):
-        #self.init()
         self.MOT_A_IN1_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN1, False)
         self.MOT_A_IN2_PWM.start(0)#gpio.output(self.MOT_A_IN2, False)
         self.MOT_A_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN3, False)
@@ -97,7 +94,6 @@ class GPIOControl():
         #gpio.cleanup()
 
     def left(self):
-        #self.init()
         self.MOT_A_IN1_PWM.start(0)#gpio.output(self.MOT_A_IN1, True)
         self.MOT_A_IN2_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN2, False)
         self.MOT_A_IN3_PWM.start(0)#gpio.output(self.MOT_A_IN3, False)
@@ -112,7 +108,6 @@ class GPIOControl():
         #gpio.cleanup()
 
     def reverse(self):
-        #self.init()
         self.MOT_A_IN1_PWM.start(0)#gpio.output(self.MOT_A_IN1, False)
         self.MOT_A_IN2_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN2, True)
         self.MOT_A_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_A_IN3, True)

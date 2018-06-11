@@ -1,10 +1,8 @@
 import requests
 import json
-#import time as t
 
 def get_data():
-        #print("Sleeping......")
-        #t.sleep(1)
+        
         #print("Connecting to dweet.io")
         try:
                 data = requests.get("http://dweet.io/get/latest/dweet/for/m2d2").text

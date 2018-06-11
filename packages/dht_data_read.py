@@ -1,7 +1,6 @@
 import sys
 import Adafruit_DHT
 
-#DHT11 = 'Adafruit_DHT.DHT11'
 DATA_PIN = 4
 
 def get_data():
@@ -14,8 +13,5 @@ def get_data():
         return DATA
 
     except Exception as e:
-        print(str(e))
+        print("DHT sensor data read error: "str(e))
         return {"Humidity":0, "Temperature":0}
-    #return (humidity, temperature)
-
-print(get_data())

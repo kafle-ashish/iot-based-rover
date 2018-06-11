@@ -6,6 +6,5 @@ def http_post(DATA):
     try:
         requests.post(DHT_URL, data=DATA)
     except Exception as e:
-        print(e)
-        #pass
+        print("Sensor data post error: ", str(e))
     return
