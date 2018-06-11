@@ -18,25 +18,28 @@ def looper():
         DATA = str(control_fetch.get_data())
         print(DATA)
         if DATA == "['0000']":
-            th = threading.thread(target=gpio_control.wait())
+            th = threading.Thread(target=gpio_control.wait(), daemon=True)
             #gpio_control.wait()
+            pass
 
         elif DATA == "['0001']":            
-            th = threading.thread(target=gpio_control.left()) 
+            th = threading.Thread(target=gpio_control.left(), daemon=True) 
             #gpio_control.left()
 
         elif DATA == "['0002']":
-            th = threading.thread(target=gpio_control.forward())
+            th = threading.Thread(target=gpio_control.forward(), daemon=True)
             #gpio_control.forward()
         
         elif DATA == "['0003']":
-            th = threading.thread(target=gpio_control.right())
+            th = threading.Thread(target=gpio_control.right(), daemon=True)
             #gpio_control.right()
         
         elif DATA == "['0004']":
-            th = threading.thread(target=gpio_control.reverse())
+            th = threading.Thread(target=gpio_control.reverse(), daemon=True)
             #gpio_control.reverse()
         
+        elif DATA == "['0005']":
+            break
         else:
             pass
             #gpio_control.wait()

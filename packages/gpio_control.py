@@ -63,7 +63,7 @@ class GPIOControl():
         self.MOT_B_IN2_PWM.start(0)#gpio.output(self.MOT_B_IN2, False)
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
-        t.sleep(SLEEP_TIME)
+        t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
     def forward(self):
@@ -78,7 +78,7 @@ class GPIOControl():
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(self.PWM_VALUE_CORR)#gpio.output(self.MOT_B_IN4, True)
 
-        t.sleep(SLEEP_TIME)
+        t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
     def right(self):
@@ -93,7 +93,7 @@ class GPIOControl():
         self.MOT_B_IN3_PWM.start(0)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN4, True)
 
-        t.sleep(SLEEP_TIME)
+        t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
     def left(self):
@@ -108,7 +108,7 @@ class GPIOControl():
         self.MOT_B_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN3, False)
         self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
 
-        t.sleep(SLEEP_TIME)
+        t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
     def reverse(self):
@@ -123,7 +123,7 @@ class GPIOControl():
         self.MOT_B_IN3_PWM.start(self.PWM_VALUE)#gpio.output(self.MOT_B_IN3, True)
         self.MOT_B_IN4_PWM.start(0)#gpio.output(self.MOT_B_IN4, False)
 
-        t.sleep(SLEEP_TIME)
+        t.sleep(self.SLEEP_TIME)
         #gpio.cleanup()
 
 #if __name__ == "__main__":
